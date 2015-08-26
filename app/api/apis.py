@@ -8,10 +8,6 @@ def errors(error):
 	return 'From API Blueprint :' + repr(error)
 	
 
-@api.route('/api/get/getThread/<id>')
-def getThread(id):
-	'''Return the thread from the ID'''
-
 @api.route('/api/vote/<id>/<vote>')
 def vote(id, vote):
 	suggestion = Suggestion.query.filter_by(id = id).first()

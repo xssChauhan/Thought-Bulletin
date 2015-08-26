@@ -30,9 +30,8 @@
 		</div>
 
 		<div class="col-md-4">
-		<a href="{{url_for('api.vote',id=suggestion.id, vote = 1)}}">Yes</a>
-		<a href="{{url_for('api.vote',id=suggestion.id, vote = 0)}}">No</a>
-	</div>
+		<a class="btn btn-primary" href="{{url_for('api.vote',id=suggestion.id, vote = 1)}}">Yes</a>
+		<a class="btn btn-primary" href="{{url_for('api.vote',id=suggestion.id, vote = 0)}}">No</a>
 		
 	</div>
 	
