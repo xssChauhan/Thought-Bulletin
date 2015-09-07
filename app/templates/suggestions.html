@@ -2,41 +2,28 @@
 {%block title%}Thought Bulletin{% endblock %}
 
 {% block page_content %}
-<div class="page-header center-block">
-	<ul class="nav nav-pills">
-		<li class="active"><a href="#">Vote</a> </li>
-		<li><a href="{{url_for('main.addSuggestion')}}">Add Feature Requests</a></li>
-	</ul>
-
-</div>
-
-{% for suggestion in suggestions %}
-<div class="row" style="border-bottom: 1px solid #EEE;margin-top:0.5em">
-	<div class="container">
-		<div class="col-md-2">
-			<p>{{suggestion.id}}</p>
-			
-		</div>
-		<div class="col-md-2">
-			{% if suggestion.votes > 0 %}
-			<p>+{{suggestion.votes}}</p>
-			{% else %}
-			<p>0</p>
-			{% endif %}
-		</div>
-		<div class="col-md-4">
-			<p class="text-left">{{suggestion.content}}</p>
-			<p>by <b>{{suggestion.user}}</b></p>
-		</div>
-
-		<div class="col-md-4">
-		<a class="btn btn-primary" href="{{url_for('api.vote',id=suggestion.id, vote = 1)}}">Yes</a>
-		<a class="btn btn-primary" href="{{url_for('api.vote',id=suggestion.id, vote = 0)}}">No</a>
-		
-	</div>
+<!-->Add a fabric command bar here<-->
+<div class="ms-Grid">
+<ul class="ms-List">
 	
+	{% for suggestion in suggestions %}
+	<div class="ms-ListItem is-selectable is-unread" style="border-bottom: 1px solid #EEE;margin-top:0.5em" data="{{suggestion.id}}">
+		<span class="ms-ListItem-primaryText">{{suggestion.content}}
+		</span>
+		<span class="ms-ListItem-secondaryText">
+			+{{suggestion.votes}}
+		</span>
+		<span class="ms-ListItem tertiaryText">
+			{{suggestion.user}}
+		</span>
+		<div class="ms-ListItem-selectionTarget js-toggleSelection "></div>
+		<div class="ms-ListItem-actions ms-font-xl">
+            <div class="ms-ListItem-action"><i class="ms-Icon  ms-Icon--arrowUp"></i></div>
+            <div class="ms-ListItem-action"><i class="ms-Icon  ms-Icon--arrowDown"></i></div>
+        </div>
+    </div>
+	{% endfor %}
+</ul>
 </div>
-{% endfor %}
-
 {% endblock %}
 

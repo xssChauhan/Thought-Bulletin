@@ -1,11 +1,50 @@
-{% extends "bootstrap/base.html"%}
-{% block title %}Thought Bulletin{% endblock %}
+<!doctype html>
+<head>
+	{%block head%}
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thought Bulletin</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/fabric.min.css')}}" type="text/css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/fabric.components.min.css')}}" type="text/css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/app.css')}}" type="text/css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.fabric.js',_external=True)}}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      // File Picker demo fixes
+      if ($('.ms-FilePicker').length > 0) {
+        $('.ms-FilePicker').css({
+          "position": "absolute !important"
+        });
+
+        $('.ms-Panel').FilePicker();
+      } else {
+        if ($.fn.NavBar) {
+          $('.ms-NavBar').NavBar();
+        }
+      }
+
+      if(fabric && fabric['NavBar']) {
+        var component, componentHolder;
+        componentHolder = document.querySelector('.component-holder');
+
+        if (componentHolder) {
+          component = new fabric.Spinner(componentHolder);
+        }
+      }
+    });
+  </script>
+
+{% endblock %}
+</head>
 
 
 
-{{ super() }}
-{% block navbar %}
-<div class="navbar navbar-inverse" role="naviagation">
+
+
+
+<body>
+<!--div class="navbar navbar-inverse" role="naviagation">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,18 +57,43 @@
 		</div>		
 		<div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('.index') }}">Home</a></li>
+                <li><a href="{{ url_for('.index') }}">Polls</a></li>
+               
             </ul>
         </div>
         	
 	</div>
+</div-->
+
+<h1 class="ms-font-su ms-fontColor-white ms-bgColor-themeDarker">Thought Bulletin</h1>
+<div class="Navigation">
+	<div class="ms-NavBar">
+  <div class="ms-NavBar-openMenu js-openMenu">
+    <i class="ms-Icon ms-Icon--menu"></i>
+  </div>
+  <ul class="ms-NavBar-items ">
+    <li class="ms-NavBar-item ms-NavBar-item--search ms-u-hiddenSm" style="display:none">
+      <div class="ms-TextField">
+        <input class="ms-TextField-field">
+      </div>
+    </li>
+    <li class="ms-NavBar-item"><a class="ms-NavBar-link" href="#">Home</a></li>
+    <li class="ms-NavBar-item ms-NavBar-item--hasMenu">
+      <a class="ms-NavBar-link" href="#">Poll</a>
+      <i class="ms-NavBar-chevronDown ms-Icon ms-Icon--chevronDown"></i>
+      <ul class="ms-ContextualMenu">
+        <li class="ms-ContextualMenu-item"><a class="ms-ContextualMenu-link" href="#">Vote</a></li>
+        <li class="ms-ContextualMenu-item"><a class="ms-ContextualMenu-link" href="#">New Poll</a></li>
+      </ul>
+    </li>
+  </ul>
 </div>
-{% block page_content %} {%endblock%}
-{% endblock %}
+</div>
 
-{% block scripts%}
 
-{{super()}}
-
-{% endblock %}
+<div class="page_content">
+	{% block page_content %}
+	{% endblock %}
+</div>
+</body>
 

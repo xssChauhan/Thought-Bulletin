@@ -1,6 +1,6 @@
 import os
 from app import create_app, db
-from app.models import Suggestion, UserLog
+from app.models import Suggestion, UserLog, User, Content
 from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 

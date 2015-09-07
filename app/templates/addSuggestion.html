@@ -1,14 +1,13 @@
 {% extends "base.html"%}
 {%import "bootstrap/wtf.html" as wtf%}
+
 {%block title%} Feature Request{%endblock%}
 
 {% block page_content %}
-<div class="page-header center-block">
-	<ul class="nav nav-pills">
-		<li class=" "><a href="{{url_for('main.index')}}">Vote</a> </li>
-		<li class="active"><a>Add Feature Requests</a></li>
-	</ul>
-
+<div class="ms-Breadcrumb">
+  <span class="ms-Breadcrumb-currentLarge">Add a Poll</span>
+  <a href="url_for('main.index')" class="ms-Breadcrumb-parent">Polls</a>
+  <span class="ms-Breadcrumb-current">Add a Poll</span>
 </div>
 <div class="container">
 	{{wtf.quick_form(form)}}
